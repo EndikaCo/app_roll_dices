@@ -2,7 +2,10 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
+        android:name=".RollDicesApp"
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
@@ -13,14 +16,22 @@
         android:theme="@style/Theme.Roll_dices"
         tools:targetApi="31">
         <activity
-            android:name=".presenter.MainActivity"
-            android:exported="true">
+            android:name=".presenter.main.MainActivity"
+            android:exported="true"
+            android:theme="@style/Theme.App.Starting"
+            android:windowSoftInputMode="adjustPan">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <!-- Sample AdMob app ID: ca-app-pub-3940256099942544~3347511713 -->
+        <!-- home admob banner -->
+        <meta-data
+            android:name="com.google.android.gms.ads.APPLICATION_ID"
+            android:value="ca-app-pub-3940256099942544~3347511713" /> <!-- todo: change with real id -->
     </application>
 
 </manifest>

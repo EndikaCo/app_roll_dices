@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-
 <resources>
-    <!-- Base application theme. -->
+
     <style name="Theme.Roll_dices" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <!-- Primary brand color. -->
         <item name="colorPrimary">@color/blue_1</item>
@@ -14,5 +13,6 @@
         <!-- Status bar color. -->
         <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
+        <item name="android:forceDarkAllowed">false</item>
     </style>
 </resources>
