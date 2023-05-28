@@ -10,7 +10,7 @@
         android:layout_width="60dp"
         android:layout_height="60dp"
         android:text="@string/minus"
-        android:textSize="26sp"
+        style="@style/view_buttons"
         app:layout_constraintEnd_toEndOf="@+id/add_bt"
         app:layout_constraintTop_toBottomOf="@+id/add_bt" />
 
@@ -21,7 +21,7 @@
         android:layout_marginTop="24dp"
         android:layout_marginEnd="16dp"
         android:text="@string/plus"
-        android:textSize="24sp"
+        style="@style/view_buttons"
         app:layout_constraintBottom_toTopOf="@+id/remove_bt"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
