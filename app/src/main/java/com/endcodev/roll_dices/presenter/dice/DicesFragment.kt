@@ -1,4 +1,3 @@
-
 import android.content.res.Configuration
 import android.graphics.drawable.Animatable
 import android.os.Bundle
@@ -12,9 +11,9 @@ import android.widget.ImageView
 import android.widget.LinearLayout
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import com.endcodev.roll_dices.presenter.dice.DicesFragmentViewModel
 import com.endcodev.roll_dices.R
 import com.endcodev.roll_dices.databinding.FragmentDicesBinding
+import com.endcodev.roll_dices.presenter.dice.DicesFragmentViewModel
 import com.google.android.gms.ads.AdRequest
 import kotlin.random.Random
 
@@ -41,9 +40,15 @@ class DicesFragment : Fragment(R.layout.fragment_dices) {
         super.onViewCreated(view, savedInstanceState)
 
         addNewDice()
+
         screenSize()
+
         initAdmob()
 
+        initListeners()
+    }
+
+    private fun initListeners() {
         binding.linearDices.setOnClickListener {
             rollAllDices()
         }
@@ -87,7 +92,7 @@ class DicesFragment : Fragment(R.layout.fragment_dices) {
                 LinearLayout.LayoutParams.WRAP_CONTENT,
                 LinearLayout.LayoutParams.WRAP_CONTENT
             )
-            if (resources.configuration.orientation == 1)
+            if (resources.configuration.orientation == 1) // Land
                 layoutParams.setMargins(0, 0, 0, 30)
             else
                 layoutParams.setMargins(0, 0, 30, 0)

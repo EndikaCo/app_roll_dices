@@ -1,17 +1,9 @@
 <resources>
-    <string name="app_name">roll_dices</string>
-    <string name="coin_accept_button">LANZA UNA MONEDA</string>
-    <string name="view_back_button">Botón para volver atrás</string>
+    <string name="app_name">Tirar Dados</string>
     <string name="plus">+</string>
     <string name="minus">-</string>
-    <string name="Accept">Aceptar</string>
-    <string name="Cancel">Cancelar</string>
-    <string name="roll_dices">LANZA LOS DADOS</string>
-    <string name="roll_dices_land">LANZA\nLOS DADOS</string>
-    <string name="home_roll_dices_logo">LOGO LANZA LOS DADOS</string>
-    <string name="heads_or_tails_title">CARA O CRUZ</string>
-    <string name="require_update">Actualización requerida</string>
+    <string name="require_update">ACTUALIZACIÓN REQUERIDA</string>
     <string name="update">Actualizar</string>
     <string name="cancel">Cancelar</string>
-    <string name="require_version">Tu versión actual es %1$s. Pero se requiere %2$d.</string>
+    <string name="require_version">Tu versión actual es V%1$s.0\nSe requiere V%2$d.0</string>
 </resources>

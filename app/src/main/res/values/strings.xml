@@ -1,17 +1,9 @@
 <resources>
-<string name="app_name">roll_dices</string>
-<string name="coin_accept_button">FLIP A COIN</string>
-<string name="view_back_button">Button to go back</string>
-<string name="plus">+</string>
-<string name="minus">-</string>
-<string name="Accept">Accept</string>
-<string name="Cancel">Cancel</string>
-<string name="roll_dices">ROLL DICES</string>
-<string name="roll_dices_land">ROLL\nDICES</string>
-<string name="home_roll_dices_logo">ROLL DICES LOGO</string>
-<string name="heads_or_tails_title">HEADS OR TAILS</string>
-<string name="require_update">Update required</string>
-<string name="update">Update</string>
-<string name="cancel">Cancel</string>
-<string name="require_version">Your actual version is %1$s. But %2$d is required</string>
+    <string name="app_name">Roll Dices</string>
+    <string name="plus">+</string>
+    <string name="minus">-</string>
+    <string name="require_update">Update required</string>
+    <string name="require_version">Your actual version is %1$s. But %2$d is required</string>
+    <string name="cancel">Cancel</string>
+    <string name="update">Update</string>
 </resources>

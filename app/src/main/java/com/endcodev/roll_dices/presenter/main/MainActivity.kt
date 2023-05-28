@@ -7,12 +7,12 @@ import android.content.pm.PackageInfo
 import android.content.pm.PackageManager
 import android.net.Uri
 import android.os.Build
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.view.ViewTreeObserver
 import androidx.activity.viewModels
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
@@ -41,14 +41,22 @@ class MainActivity : AppCompatActivity() {
 
         mainViewModel.isConnected()
 
+        initObservers()
+
+        initNavController()
+
+        appReady()
+    }
+
+    private fun initObservers() {
         mainViewModel.version.observe(this) {
             if (it != null)
                 versionControl(it)
             else
-                Log.e(TAG, "mainViewModel version is null")
-        }
+                Log.e(TAG, "App version is null")
+        }    }
 
-        initNavController()
+    private fun appReady(){
         // Set up an OnPreDrawListener to the root view.
         val content: View = findViewById(android.R.id.content)
         content.viewTreeObserver.addOnPreDrawListener(
