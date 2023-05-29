@@ -1,3 +1,5 @@
+package com.endcodev.roll_dices.presenter.dialog
+
 import android.app.AlertDialog
 import android.app.Dialog
 import android.os.Bundle

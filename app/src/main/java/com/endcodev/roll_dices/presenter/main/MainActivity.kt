@@ -1,6 +1,6 @@
 package com.endcodev.roll_dices.presenter.main
 
-import ErrorDialogFragment
+import com.endcodev.roll_dices.presenter.dialog.ErrorDialogFragment
 import android.content.ActivityNotFoundException
 import android.content.Intent
 import android.content.pm.PackageInfo

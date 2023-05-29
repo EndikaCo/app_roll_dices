@@ -6,16 +6,6 @@
     android:layout_height="match_parent"
     android:background="@color/black">
 
-    <include
-        android:id="@+id/view_buttons"
-        layout="@layout/view_buttons"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        ads:layout_constraintBottom_toBottomOf="parent"
-        ads:layout_constraintEnd_toEndOf="parent"
-        ads:layout_constraintStart_toStartOf="parent"
-        ads:layout_constraintTop_toTopOf="parent" />
-
     <LinearLayout
         android:id="@+id/linear_dices"
         android:layout_width="wrap_content"
@@ -40,5 +30,15 @@
         ads:layout_constraintBottom_toBottomOf="parent"
         ads:layout_constraintEnd_toEndOf="parent"
         ads:layout_constraintStart_toStartOf="parent" />
+
+    <include
+        android:id="@+id/view_buttons"
+        layout="@layout/view_buttons"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        ads:layout_constraintBottom_toBottomOf="parent"
+        ads:layout_constraintEnd_toEndOf="parent"
+        ads:layout_constraintStart_toStartOf="parent"
+        ads:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

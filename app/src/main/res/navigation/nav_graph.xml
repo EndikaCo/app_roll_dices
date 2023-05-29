@@ -5,7 +5,7 @@
     app:startDestination="@id/dicesFragment">
     <fragment
         android:id="@+id/dicesFragment"
-        android:name="DicesFragment"
+        android:name="com.endcodev.roll_dices.presenter.dice.DicesFragment"
         android:label="DicesFragment" />
 </navigation>
 

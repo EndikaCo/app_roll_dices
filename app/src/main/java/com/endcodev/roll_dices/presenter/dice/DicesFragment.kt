@@ -1,3 +1,5 @@
+package com.endcodev.roll_dices.presenter.dice
+
 import android.content.res.Configuration
 import android.graphics.drawable.Animatable
 import android.os.Bundle
@@ -13,7 +15,6 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.endcodev.roll_dices.R
 import com.endcodev.roll_dices.databinding.FragmentDicesBinding
-import com.endcodev.roll_dices.presenter.dice.DicesFragmentViewModel
 import com.google.android.gms.ads.AdRequest
 import kotlin.random.Random
 
@@ -24,7 +25,7 @@ class DicesFragment : Fragment(R.layout.fragment_dices) {
     private val viewModel: DicesFragmentViewModel by viewModels()
     private val dices: ArrayList<ImageView> = ArrayList()
     private var rolling = false
-    private var maxDices = 4
+    private var maxDices = 5
     private var sides = 6
 
     override fun onCreateView(
@@ -78,15 +79,15 @@ class DicesFragment : Fragment(R.layout.fragment_dices) {
                 Configuration.SCREENLAYOUT_SIZE_MASK
 
         maxDices = when (screenSize) {
-            Configuration.SCREENLAYOUT_SIZE_LARGE -> 6
-            Configuration.SCREENLAYOUT_SIZE_NORMAL -> 5
-            Configuration.SCREENLAYOUT_SIZE_SMALL -> 4
-            else -> 4
+            Configuration.SCREENLAYOUT_SIZE_LARGE -> 7
+            Configuration.SCREENLAYOUT_SIZE_NORMAL -> 6
+            Configuration.SCREENLAYOUT_SIZE_SMALL -> 5
+            else -> 5
         }
     }
 
     private fun addNewDice() {
-        if (dices.size <= 4) { // max dices in View
+        if (dices.size < maxDices) { // max dices in View
             dices.add(ImageView(context))
             val layoutParams = LinearLayout.LayoutParams(
                 LinearLayout.LayoutParams.WRAP_CONTENT,
