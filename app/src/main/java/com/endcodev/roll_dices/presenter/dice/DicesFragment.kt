@@ -69,7 +69,7 @@ class DicesFragment : Fragment(R.layout.fragment_dices) {
             val randomTimer: Long = (50..500).random(Random(System.currentTimeMillis())).toLong()
             animation.startOffset = randomTimer
             dices[i].startAnimation(animation)
-            rollDices(sides, dices)
+            rollDices(sides + 1, dices)
         }
     }
 
