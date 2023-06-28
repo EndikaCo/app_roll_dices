@@ -1,17 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
     <style name="Theme.App.Starting" parent="Theme.SplashScreen">
         <item name="windowSplashScreenBackground">@color/black</item>
-        <item name="windowSplashScreenAnimatedIcon">@drawable/logo_240_160</item>
+        <item name="windowSplashScreenAnimatedIcon">@drawable/splash</item>
         <item name="windowSplashScreenAnimationDuration">1000</item>
         <item name="postSplashScreenTheme">@style/Theme.Roll_dices</item>
+        windowSplashScreenBrandingImage <item name="android:windowSplashScreenBrandingImage">
+        @drawable/splash_brand_200x80
+    </item> Share
     </style>
-
-    <style name="view_buttons" parent="ThemeOverlay.Material3.Button">
-        <item name="android:textColor">@color/grey</item>
-        <item name="android:textSize">26sp</item>
-        <item name="backgroundTint">@color/white</item>
-    </style>
-
-
 </resources>

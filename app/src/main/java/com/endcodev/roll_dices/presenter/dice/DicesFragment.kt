@@ -5,6 +5,7 @@ import android.graphics.drawable.Animatable
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -20,9 +21,14 @@ import kotlin.random.Random
 
 class DicesFragment : Fragment(R.layout.fragment_dices) {
 
+    companion object {
+        const val TAG = "DicesFragment"
+    }
+
     private var _binding: FragmentDicesBinding? = null
     private val binding get() = _binding!!
     private val viewModel: DicesFragmentViewModel by viewModels()
+
     private val dices: ArrayList<ImageView> = ArrayList()
     private var rolling = false
     private var maxDices = 5
@@ -131,7 +137,8 @@ class DicesFragment : Fragment(R.layout.fragment_dices) {
                                 5 -> item.setBackgroundResource(R.drawable.dice_5)
                                 6 -> item.setBackgroundResource(R.drawable.dice_6)
                             }
-                        } catch (_: Exception) {
+                        } catch (e: Exception) {
+                            Log.e(TAG, "Exception: $e")
                         }
 
                         if (index == ivs.lastIndex)

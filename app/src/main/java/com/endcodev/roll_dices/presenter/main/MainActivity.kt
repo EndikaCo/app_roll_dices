@@ -23,7 +23,7 @@ import com.endcodev.roll_dices.databinding.ActivityMainBinding
 class MainActivity : AppCompatActivity() {
 
     companion object {
-        const val TAG = "general"
+        const val TAG = "MainActivity"
     }
 
     private var _binding: ActivityMainBinding? = null
