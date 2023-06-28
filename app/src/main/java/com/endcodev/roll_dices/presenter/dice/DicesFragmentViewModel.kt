@@ -10,8 +10,20 @@ class DicesFragmentViewModel : ViewModel() {
     private val _diceFace = MutableLiveData<List<Int>>()
     val diceFace: LiveData<List<Int>> get() = _diceFace
 
-    fun rollDices(sides: Int, diceQuantity: Int): List<Int> {
-        _diceFace.value = GetRandomDiceUseCase().invoke(sides, diceQuantity)
-        return _diceFace.value!!
+    private var isRolling = false
+    private var maxDices = 5
+
+
+    fun setMaxDices(max : Int){
+        maxDices = max
     }
+
+    fun isRolling(state : Boolean){
+        isRolling = state
+    }
+
+    fun rollDices(sides: Int, diceQuantity: Int){
+        _diceFace.value = GetRandomDiceUseCase().invoke(sides, diceQuantity)
+    }
+
 }

@@ -9,6 +9,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.Animation
 import android.view.animation.AnimationUtils
 import android.widget.ImageView
 import android.widget.LinearLayout
@@ -48,11 +49,17 @@ class DicesFragment : Fragment(R.layout.fragment_dices) {
 
         addNewDice()
 
-        screenSize()
+        getScreenSize()
 
         initAdmob()
 
         initListeners()
+
+        initObservers()
+    }
+
+    private fun initObservers() {
+
     }
 
     private fun initListeners() {
@@ -72,15 +79,19 @@ class DicesFragment : Fragment(R.layout.fragment_dices) {
     private fun rollAllDices() {
         rolling = true
         for (i in dices.indices) {
-            val animation = AnimationUtils.loadAnimation(context, R.anim.dice_move)
-            val randomTimer: Long = (50..500).random(Random(System.currentTimeMillis())).toLong()
-            animation.startOffset = randomTimer
-            dices[i].startAnimation(animation)
+            dices[i].startAnimation(createAnimation())
             rollDices(sides + 1, dices)
         }
     }
 
-    private fun screenSize() {
+    private fun createAnimation(): Animation? {
+        val animation = AnimationUtils.loadAnimation(context, R.anim.dice_move)
+        val randomTimer: Long = (50..500).random(Random(System.currentTimeMillis())).toLong()
+        animation.startOffset = randomTimer
+        return animation
+    }
+
+    private fun getScreenSize() {
         val screenSize = resources.configuration.screenLayout and
                 Configuration.SCREENLAYOUT_SIZE_MASK
 
@@ -95,18 +106,21 @@ class DicesFragment : Fragment(R.layout.fragment_dices) {
     private fun addNewDice() {
         if (dices.size < maxDices) { // max dices in View
             dices.add(ImageView(context))
-            val layoutParams = LinearLayout.LayoutParams(
-                LinearLayout.LayoutParams.WRAP_CONTENT,
-                LinearLayout.LayoutParams.WRAP_CONTENT
-            )
-            if (resources.configuration.orientation == 1) // Land
-                layoutParams.setMargins(0, 0, 0, 30)
-            else
-                layoutParams.setMargins(0, 0, 30, 0)
-
             dices[dices.lastIndex].setBackgroundResource(R.drawable.dice_1)
-            binding.linearDices.addView(dices[dices.lastIndex], layoutParams)
+            binding.linearDices.addView(dices[dices.lastIndex], getLayoutParams())
         }
+    }
+
+    private fun getLayoutParams(): LinearLayout.LayoutParams {
+        val layoutParams = LinearLayout.LayoutParams(
+            LinearLayout.LayoutParams.WRAP_CONTENT,
+            LinearLayout.LayoutParams.WRAP_CONTENT
+        )
+        if (resources.configuration.orientation == 1) // Land
+             layoutParams.setMargins(0, 0, 0, 30)
+        else
+             layoutParams.setMargins(0, 0, 30, 0)
+        return layoutParams
     }
 
     private fun removeLastDice() {
@@ -119,7 +133,6 @@ class DicesFragment : Fragment(R.layout.fragment_dices) {
     private fun rollDices(sides: Int, ivs: ArrayList<ImageView>) {
 
         for ((index, item) in ivs.withIndex()) {
-            println("The element at $index is $item")
             item.setBackgroundResource(R.drawable.dice_spread)
             val diceAnimation = item.background
             if (diceAnimation is Animatable) {
@@ -129,18 +142,10 @@ class DicesFragment : Fragment(R.layout.fragment_dices) {
                         diceAnimation.stop() // This method will be executed once the timer is over
                         viewModel.rollDices(sides, ivs.size)
                         try {
-                            when (viewModel.diceFace.value?.get(index)) {
-                                1 -> item.setBackgroundResource(R.drawable.dice_1)
-                                2 -> item.setBackgroundResource(R.drawable.dice_2)
-                                3 -> item.setBackgroundResource(R.drawable.dice_3)
-                                4 -> item.setBackgroundResource(R.drawable.dice_4)
-                                5 -> item.setBackgroundResource(R.drawable.dice_5)
-                                6 -> item.setBackgroundResource(R.drawable.dice_6)
-                            }
+                            setDiceBackground(viewModel.diceFace.value?.get(index)!!, item)
                         } catch (e: Exception) {
                             Log.e(TAG, "Exception: $e")
                         }
-
                         if (index == ivs.lastIndex)
                             rolling = false
                     },
@@ -148,6 +153,17 @@ class DicesFragment : Fragment(R.layout.fragment_dices) {
                     450
                 )
             }
+        }
+    }
+
+    private fun setDiceBackground(num: Int, item: ImageView) {
+        when (num) {
+            1 -> item.setBackgroundResource(R.drawable.dice_1)
+            2 -> item.setBackgroundResource(R.drawable.dice_2)
+            3 -> item.setBackgroundResource(R.drawable.dice_3)
+            4 -> item.setBackgroundResource(R.drawable.dice_4)
+            5 -> item.setBackgroundResource(R.drawable.dice_5)
+            6 -> item.setBackgroundResource(R.drawable.dice_6)
         }
     }
 
