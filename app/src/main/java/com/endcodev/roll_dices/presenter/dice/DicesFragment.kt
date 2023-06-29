@@ -23,7 +23,7 @@ import kotlin.random.Random
 class DicesFragment : Fragment(R.layout.fragment_dices) {
 
     companion object {
-        const val TAG = "DicesFragment"
+        const val TAG = "DicesFragment ***"
     }
 
     private var _binding: FragmentDicesBinding? = null
@@ -32,7 +32,6 @@ class DicesFragment : Fragment(R.layout.fragment_dices) {
 
     private val dices: ArrayList<ImageView> = ArrayList()
     private var rolling = false
-    private var maxDices = 5
     private var sides = 6
 
     override fun onCreateView(
@@ -47,9 +46,7 @@ class DicesFragment : Fragment(R.layout.fragment_dices) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        addNewDice()
-
-        getScreenSize()
+        initViews()
 
         initAdmob()
 
@@ -58,9 +55,16 @@ class DicesFragment : Fragment(R.layout.fragment_dices) {
         initObservers()
     }
 
-    private fun initObservers() {
-
+    private fun initViews() {
+        val diceList = viewModel.diceList.value
+        if (diceList != null) {
+            for (item in diceList) {
+                addDice(item)
+            }
+        }
     }
+
+    private fun initObservers() {}
 
     private fun initListeners() {
         binding.linearDices.setOnClickListener {
@@ -68,7 +72,7 @@ class DicesFragment : Fragment(R.layout.fragment_dices) {
         }
 
         binding.viewButtons.addBt.setOnClickListener {
-            addNewDice()
+            addNewDice(1)
         }
 
         binding.viewButtons.removeBt.setOnClickListener {
@@ -78,9 +82,10 @@ class DicesFragment : Fragment(R.layout.fragment_dices) {
 
     private fun rollAllDices() {
         rolling = true
+        viewModel.rollDices(sides, dices.size)
         for (i in dices.indices) {
             dices[i].startAnimation(createAnimation())
-            rollDices(sides + 1, dices)
+            rollDices(dices)
         }
     }
 
@@ -91,22 +96,33 @@ class DicesFragment : Fragment(R.layout.fragment_dices) {
         return animation
     }
 
-    private fun getScreenSize() {
+    private fun getMaxDices(): Int {
         val screenSize = resources.configuration.screenLayout and
                 Configuration.SCREENLAYOUT_SIZE_MASK
 
-        maxDices = when (screenSize) {
+        val maxDices = when (screenSize) {
             Configuration.SCREENLAYOUT_SIZE_LARGE -> 7
             Configuration.SCREENLAYOUT_SIZE_NORMAL -> 6
             Configuration.SCREENLAYOUT_SIZE_SMALL -> 5
             else -> 5
         }
+        return maxDices
     }
 
-    private fun addNewDice() {
-        if (dices.size < maxDices) { // max dices in View
+
+    private fun addDice( num: Int) {
+        if (dices.size < getMaxDices()) { // max dices in View
             dices.add(ImageView(context))
-            dices[dices.lastIndex].setBackgroundResource(R.drawable.dice_1)
+            setDiceBackground(num, dices[dices.lastIndex])
+            binding.linearDices.addView(dices[dices.lastIndex], getLayoutParams())
+        }
+    }
+
+    private fun addNewDice( num: Int) {
+        if (dices.size < getMaxDices()) { // max dices in View
+            dices.add(ImageView(context))
+            viewModel.addDice(num)
+            setDiceBackground(num, dices[dices.lastIndex])
             binding.linearDices.addView(dices[dices.lastIndex], getLayoutParams())
         }
     }
@@ -126,11 +142,12 @@ class DicesFragment : Fragment(R.layout.fragment_dices) {
     private fun removeLastDice() {
         if (dices.size > 1 && !rolling) {
             binding.linearDices.removeView(dices[dices.lastIndex])
+            viewModel.removeDice()
             dices.removeAt(dices.lastIndex)
         }
     }
 
-    private fun rollDices(sides: Int, ivs: ArrayList<ImageView>) {
+    private fun rollDices(ivs: ArrayList<ImageView>) {
 
         for ((index, item) in ivs.withIndex()) {
             item.setBackgroundResource(R.drawable.dice_spread)
@@ -140,9 +157,8 @@ class DicesFragment : Fragment(R.layout.fragment_dices) {
                 Handler(Looper.getMainLooper()).postDelayed(
                     {
                         diceAnimation.stop() // This method will be executed once the timer is over
-                        viewModel.rollDices(sides, ivs.size)
                         try {
-                            setDiceBackground(viewModel.diceFace.value?.get(index)!!, item)
+                            setDiceBackground(viewModel.diceList.value?.get(index)!!, item)
                         } catch (e: Exception) {
                             Log.e(TAG, "Exception: $e")
                         }

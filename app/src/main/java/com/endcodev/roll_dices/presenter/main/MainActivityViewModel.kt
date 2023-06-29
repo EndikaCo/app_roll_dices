@@ -18,6 +18,10 @@ import kotlinx.coroutines.withContext
 
 class MainActivityViewModel : ViewModel() {
 
+    companion object {
+        const val TAG = "MainActivityViewModel ***"
+    }
+
     var isReady: Boolean = false
     private val _version = MutableLiveData<String?>()
     val version: LiveData<String?> get() = _version
@@ -38,15 +42,15 @@ class MainActivityViewModel : ViewModel() {
             override fun onDataChange(snapshot: DataSnapshot) {
                 val connected = snapshot.getValue(Boolean::class.java) ?: false
                 if (connected) {
-                    Log.d(MainActivity.TAG, "firebase connected")
+                    Log.d(TAG, "firebase connected")
                     checkVersion()
                 } else {
-                    Log.d(MainActivity.TAG, "firebase not connected")
+                    Log.d(TAG, "firebase not connected")
                 }
             }
 
             override fun onCancelled(error: DatabaseError) {
-                Log.w(MainActivity.TAG, "firebase listener was cancelled")
+                Log.w(TAG, "firebase listener was cancelled")
             }
         })
     }
@@ -64,14 +68,14 @@ class MainActivityViewModel : ViewModel() {
                 val needVersion = snapshot.getValue<String>()
 
                 if (needVersion == null) {
-                    Log.e(MainActivity.TAG, "versions is null")
+                    Log.e(TAG, "versions is null")
                 } else {
                     _version.value = needVersion
                 }
             }
 
             override fun onCancelled(error: DatabaseError) {
-                Log.e(MainActivity.TAG, "Firebase error: $error")
+                Log.e(TAG, "Firebase error: $error")
             }
         })
     }

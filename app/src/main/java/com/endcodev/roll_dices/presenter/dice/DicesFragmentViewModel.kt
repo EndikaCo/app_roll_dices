@@ -7,23 +7,30 @@ import com.endcodev.roll_dices.domain.GetRandomDiceUseCase
 
 class DicesFragmentViewModel : ViewModel() {
 
-    private val _diceFace = MutableLiveData<List<Int>>()
-    val diceFace: LiveData<List<Int>> get() = _diceFace
-
-    private var isRolling = false
-    private var maxDices = 5
-
-
-    fun setMaxDices(max : Int){
-        maxDices = max
+    companion object {
+        const val TAG = "DicesFragmentViewModel ***"
     }
 
-    fun isRolling(state : Boolean){
-        isRolling = state
+    private val _diceList: MutableLiveData<MutableList<Int>> by lazy {
+        MutableLiveData<MutableList<Int>>().apply {
+            value = mutableListOf(1)
+        }
+    }
+    val diceList: LiveData<MutableList<Int>> get() = _diceList
+
+    fun rollDices(sides: Int, diceQuantity: Int) {
+        _diceList.value = GetRandomDiceUseCase().invoke(sides, diceQuantity)
     }
 
-    fun rollDices(sides: Int, diceQuantity: Int){
-        _diceFace.value = GetRandomDiceUseCase().invoke(sides, diceQuantity)
+    fun removeDice() {
+        _diceList.value?.let {
+            if (it.isNotEmpty()) {
+                it.removeAt(it.lastIndex)
+            }
+        }
     }
 
+    fun addDice(num: Int) {
+        _diceList.value?.add(num)
+    }
 }

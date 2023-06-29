@@ -5,6 +5,7 @@ import junit.framework.TestCase
 import org.junit.Test
 
 internal class GetRandomDiceUseCaseTest {
+
     @Test
     fun `check if dices roll result is enough random`() {
 
