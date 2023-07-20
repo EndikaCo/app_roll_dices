@@ -11,7 +11,7 @@ class GetRandomDiceUseCase {
 
     operator fun invoke(sides: Int, diceQuantity: Int): MutableList<Int> {
         val randomNumbers = MutableList(diceQuantity) { Random.nextInt(1, sides + 1) }
-        Log.v(TAG, "$randomNumbers")
+        Log.v(TAG, "dices list:$randomNumbers")
         return (randomNumbers)
     }
 }

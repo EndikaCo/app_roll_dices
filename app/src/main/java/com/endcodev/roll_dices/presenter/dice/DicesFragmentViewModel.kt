@@ -28,13 +28,24 @@ class DicesFragmentViewModel : ViewModel() {
 
     fun rollDices(sides: Int, diceQuantity: Int) {
         _diceList.value = GetRandomDiceUseCase().invoke(sides, diceQuantity)
+        addToSumList()
+    }
+
+    private fun addToSumList() {
+
+        val diceList = _diceList.value ?: return
+        val sumList = _sumList.value ?: return
+
+        //if (sumList.size > 9) {
+        //    _sumList.value!!.removeAt(0)
+        //}
 
         var sum = 0
-        for (item in _diceList.value!!)
-            sum+= item
-        _sumList.value!!.add(sum)
+        for (item in diceList)
+            sum += item
+        sumList.add(sum)
 
-        Log.v(TAG,"${_sumList.value}")
+        Log.v(TAG, "sum list: ${_sumList.value}")
     }
 
     fun removeDice() {

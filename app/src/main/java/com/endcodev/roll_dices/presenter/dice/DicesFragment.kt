@@ -1,5 +1,6 @@
 package com.endcodev.roll_dices.presenter.dice
 
+import android.annotation.SuppressLint
 import android.content.res.Configuration
 import android.graphics.drawable.Animatable
 import android.os.Bundle
@@ -81,17 +82,16 @@ class DicesFragment : Fragment(R.layout.fragment_dices) {
         binding.viewButtons.removeBt.setOnClickListener {
             removeLastDice()
         }
-
-
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     private fun rollAllDices() {
         rolling = true
         viewModel.rollDices(sides, dices.size)
-        adapter.notifyItemInserted(viewModel.sumList.value!!.lastIndex)
-        for (i in dices.indices) {
-            rollDices(dices)
-        }
+        //adapter.notifyDataSetChanged()
+        adapter.swapData()
+        //adapter.notifyItemInserted(viewModel.sumList.value!!.lastIndex)
+        rollDices(dices)
     }
 
     private fun getMaxDices(): Int {
@@ -150,10 +150,11 @@ class DicesFragment : Fragment(R.layout.fragment_dices) {
         for ((index, item) in ivs.withIndex()) {
 
             val dice = viewModel.diceList.value!![index]
+            Log.v(TAG, "index:$index dice:${dice} \n")
+            if (dice == 1 || dice == 3 || dice == 6) {
 
-            if (dice == 1 || dice == 3 || dice == 6) //todo
                 item.setBackgroundResource(R.drawable.dice_spread)
-            else
+            }else
                 item.setBackgroundResource(R.drawable.dice_spread_2)
 
             val diceAnimation = item.background
