@@ -9,10 +9,6 @@ import com.endcodev.roll_dices.databinding.DiceHolderBinding
 class DicesAdapter(private var list: MutableList<Int>) :
     RecyclerView.Adapter<DicesAdapter.ViewHolder>() {
 
-    companion object {
-        const val TAG = "DicesAdapter ***"
-    }
-
     inner class ViewHolder(val binding: DiceHolderBinding) : RecyclerView.ViewHolder(binding.root)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -26,10 +22,12 @@ class DicesAdapter(private var list: MutableList<Int>) :
 
         val currentItem = list[position]
         holder.binding.holderRandName.text = currentItem.toString()
-        if (position != list.size -1)
-            holder.binding.holderArrow.visibility = View.INVISIBLE //todo
-        else
+
+        if (position == list.size - 1) {
             holder.binding.holderArrow.visibility = View.VISIBLE
+        } else {
+            holder.binding.holderArrow.visibility = View.INVISIBLE
+        }
     }
 
     override fun getItemCount(): Int {
@@ -39,13 +37,12 @@ class DicesAdapter(private var list: MutableList<Int>) :
     fun swapData() {
         if (list.size > 10) {
             list.removeAt(0)
-            for ((index) in list.withIndex()) {
-                if (index != 0)
-                    notifyItemMoved(index, index - 1)
-            }
-            notifyItemChanged(9)
+            notifyItemRemoved(0)
         }
         else
             notifyItemInserted(list.size)
+        for ((index) in list.withIndex()) {
+            notifyItemChanged(index)
+        }
     }
 }

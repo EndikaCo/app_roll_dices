@@ -88,9 +88,6 @@ class DicesFragment : Fragment(R.layout.fragment_dices) {
     private fun rollAllDices() {
         rolling = true
         viewModel.rollDices(sides, dices.size)
-        //adapter.notifyDataSetChanged()
-        adapter.swapData()
-        //adapter.notifyItemInserted(viewModel.sumList.value!!.lastIndex)
         rollDices(dices)
     }
 
@@ -165,6 +162,8 @@ class DicesFragment : Fragment(R.layout.fragment_dices) {
                         diceAnimation.stop() // This method will be executed once the timer is over
                         try {
                             setDiceBackground(viewModel.diceList.value?.get(index)!!, item)
+                            adapter.swapData()
+
                         } catch (e: Exception) {
                             Log.e(TAG, "Exception: $e")
                         }
@@ -172,7 +171,7 @@ class DicesFragment : Fragment(R.layout.fragment_dices) {
                             rolling = false
                     },
                     /** the delay should be the total of [R.drawable.dice_spread] duration + 50ms .*/
-                    650
+                    750
                 )
             }
         }
@@ -194,19 +193,15 @@ class DicesFragment : Fragment(R.layout.fragment_dices) {
         binding.homeBanner.loadAd(adRequest)
     }
 
+    private fun initAdapter(list: MutableList<Int>) {
+        adapter = DicesAdapter(list)
+        val layoutManager = LinearLayoutManager(context)
+        binding.list.layoutManager = layoutManager
+        binding.list.adapter = adapter
+    }
+
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
-    }
-
-    private fun initAdapter(list: MutableList<Int>) {
-        adapter = DicesAdapter(list)
-
-        val layoutManager = LinearLayoutManager(context)
-
-        //binding.list.smoothScrollToPosition(adapter.itemCount-1)
-
-        binding.list.layoutManager = layoutManager
-        binding.list.adapter = adapter
     }
 }

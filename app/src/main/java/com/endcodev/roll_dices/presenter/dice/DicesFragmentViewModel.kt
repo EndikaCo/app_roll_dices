@@ -36,10 +36,6 @@ class DicesFragmentViewModel : ViewModel() {
         val diceList = _diceList.value ?: return
         val sumList = _sumList.value ?: return
 
-        //if (sumList.size > 9) {
-        //    _sumList.value!!.removeAt(0)
-        //}
-
         var sum = 0
         for (item in diceList)
             sum += item

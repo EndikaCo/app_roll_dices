@@ -47,10 +47,8 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/list"
         android:layout_width="wrap_content"
-        android:layout_height="0dp"
+        android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="32dp"
-        android:layout_marginBottom="32dp"
         ads:layout_constraintBottom_toTopOf="@+id/home_banner"
         ads:layout_constraintStart_toStartOf="parent"
         ads:layout_constraintTop_toTopOf="@+id/view_buttons"

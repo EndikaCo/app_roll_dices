@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:gravity="center_vertical"
     android:orientation="horizontal"
     android:paddingBottom="10dp">
 
@@ -9,6 +10,7 @@
         android:id="@+id/holder_rand_name"
         android:layout_width="30dp"
         android:layout_height="30dp"
+        android:background="@drawable/stroke"
         android:fontFamily="casual"
         android:gravity="center"
         android:paddingStart="5dp"
@@ -16,15 +18,15 @@
         android:text=""
         android:textAlignment="center"
         android:textColor="@color/white"
-        android:textSize="16sp"
-        android:background="@drawable/stroke"/>
+        android:textSize="16sp" />
 
     <ImageView
         android:id="@+id/holder_arrow"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
+        android:layout_width="15dp"
+        android:layout_height="15dp"
         android:gravity="center"
-        android:src="@drawable/arrow_24"
-        android:textAlignment="center" />
+        android:src="@drawable/arrow_left_24"
+        android:textAlignment="center"
+        android:visibility="invisible" />
 
 </LinearLayout>
