@@ -48,6 +48,9 @@ class MainActivity : AppCompatActivity() {
         appReady()
     }
 
+    /**
+     * Initializes observers for LiveData objects in the ViewModel.
+     */
     private fun initObservers() {
         mainViewModel.version.observe(this) {
             if (it != null)
@@ -56,6 +59,10 @@ class MainActivity : AppCompatActivity() {
                 Log.e(TAG, "App version is null")
         }    }
 
+
+    /**
+     * Sets up an OnPreDrawListener to check whether the initial data is ready before drawing the UI.
+     */
     private fun appReady(){
         // Set up an OnPreDrawListener to the root view.
         val content: View = findViewById(android.R.id.content)
@@ -76,6 +83,9 @@ class MainActivity : AppCompatActivity() {
         )
     }
 
+    /**
+     * Gets package info
+     */
     private fun PackageManager.getPackageInfoCompat(
         packageName: String,
         flags: Int = 0
@@ -86,6 +96,10 @@ class MainActivity : AppCompatActivity() {
             @Suppress("DEPRECATION") getPackageInfo(packageName, flags)
         }
 
+    /**
+     * Gets the current app version.
+     * @return The current app version as an Int.
+     */
     private fun getVersion(): Int {
 
         val appVersion: Int
@@ -100,6 +114,10 @@ class MainActivity : AppCompatActivity() {
         return appVersion
     }
 
+    /**
+     * Checks whether the current app version matches the required version and shows an error dialog if it doesn't.
+     * @param needVersion The required version as a String.
+     */
     private fun versionControl(needVersion: String) {
 
         val error =
@@ -117,6 +135,9 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    /**
+     * Opens the Play Store to update the app.
+     */
     private fun openPlayStore() {
         val appPackageName = packageName
         try {
@@ -136,6 +157,9 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    /**
+     * Initializes the NavController for navigation between fragments.
+     */
     private fun initNavController() {
         val navHostFragment =
             supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment

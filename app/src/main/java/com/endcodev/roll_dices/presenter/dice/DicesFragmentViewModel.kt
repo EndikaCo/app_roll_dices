@@ -22,15 +22,28 @@ class DicesFragmentViewModel : ViewModel() {
     private var _sumList = MutableLiveData<MutableList<Int>>()
     val sumList: LiveData<MutableList<Int>> get() = _sumList
 
+    /**
+     * Initializes the ViewModel with an empty list for storing dice sums.
+     */
     init {
         _sumList.value = mutableListOf()
     }
 
+    /**
+     * Rolls dices and updates the dice list with the result.
+     * Also adds the sum of the rolled dices to the sum list.
+     *
+     * @param sides The number of sides for each dice.
+     * @param diceQuantity The number of dices to roll.
+     */
     fun rollDices(sides: Int, diceQuantity: Int) {
         _diceList.value = GetRandomDiceUseCase().invoke(sides, diceQuantity)
         addToSumList()
     }
 
+    /**
+     * Adds the sum of the rolled dices to the sum list.
+     */
     private fun addToSumList() {
 
         val diceList = _diceList.value ?: return
@@ -44,6 +57,9 @@ class DicesFragmentViewModel : ViewModel() {
         Log.v(TAG, "sum list: ${_sumList.value}")
     }
 
+    /**
+     * Removes the last dice from the dice list if the list is not empty.
+     */
     fun removeDice() {
         _diceList.value?.let {
             if (it.isNotEmpty()) {
@@ -52,6 +68,11 @@ class DicesFragmentViewModel : ViewModel() {
         }
     }
 
+    /**
+     * Adds a new dice with the given number to the dice list.
+     *
+     * @param num The number to add as a new dice.
+     */
     fun addDice(num: Int) {
         _diceList.value?.add(num)
     }

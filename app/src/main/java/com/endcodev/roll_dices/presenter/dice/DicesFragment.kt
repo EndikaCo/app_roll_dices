@@ -58,6 +58,9 @@ class DicesFragment : Fragment(R.layout.fragment_dices) {
         initObservers()
     }
 
+    /**
+     * Initialize views by setting up the diceList, adding dice views
+     */
     private fun initViews() {
 
         val diceList = viewModel.diceList.value
@@ -68,7 +71,11 @@ class DicesFragment : Fragment(R.layout.fragment_dices) {
         }
     }
 
+    /**
+     * Empty function (placeholders for future implementations if required).
+     */
     private fun initObservers() {}
+
 
     private fun initListeners() {
         binding.linearDices.setOnClickListener {
@@ -84,6 +91,11 @@ class DicesFragment : Fragment(R.layout.fragment_dices) {
         }
     }
 
+    /**
+     * call ViewModel's rollDices method
+     *
+     * set rolling to true to avoid actions while is rolling,
+     */
     @SuppressLint("NotifyDataSetChanged")
     private fun rollAllDices() {
         rolling = true
@@ -91,6 +103,9 @@ class DicesFragment : Fragment(R.layout.fragment_dices) {
         rollDices(dices)
     }
 
+    /**
+     * Get the maximum number of dices that can be displayed on the screen based on the screen size.
+     */
     private fun getMaxDices(): Int {
         val screenSize = resources.configuration.screenLayout and
                 Configuration.SCREENLAYOUT_SIZE_MASK
@@ -104,7 +119,11 @@ class DicesFragment : Fragment(R.layout.fragment_dices) {
         return maxDices
     }
 
-
+    /**
+     * Add a dice with the given number to display the dice view.
+     *
+     * @param num The number to add as a new dice.
+     */
     private fun addDice(num: Int) {
         if (dices.size < getMaxDices()) { // max dices in View
             dices.add(ImageView(context))
@@ -113,6 +132,9 @@ class DicesFragment : Fragment(R.layout.fragment_dices) {
         }
     }
 
+    /**
+     * Add a new dice to the dice list and display the dice view.
+     */
     private fun addNewDice() {
         if (dices.size < getMaxDices()) { // max dices in View
             dices.add(ImageView(context))
@@ -122,6 +144,9 @@ class DicesFragment : Fragment(R.layout.fragment_dices) {
         }
     }
 
+    /**
+     * Get the layout params for the dice views based on the screen orientation.
+     */
     private fun getLayoutParams(): LinearLayout.LayoutParams {
         val layoutParams = LinearLayout.LayoutParams(
             LinearLayout.LayoutParams.WRAP_CONTENT,
@@ -134,6 +159,9 @@ class DicesFragment : Fragment(R.layout.fragment_dices) {
         return layoutParams
     }
 
+    /**
+     * Remove the last dice from the view and the ViewModel's diceList.
+     */
     private fun removeLastDice() {
         if (dices.size > 1 && !rolling) {
             binding.linearDices.removeView(dices[dices.lastIndex])
@@ -142,6 +170,11 @@ class DicesFragment : Fragment(R.layout.fragment_dices) {
         }
     }
 
+    /**
+     * Roll the dice views with animations based on the dice values from the ViewModel's diceList.
+     *
+     * @param ivs The list of dice views to roll.
+     */
     private fun rollDices(ivs: ArrayList<ImageView>) {
 
         for ((index, item) in ivs.withIndex()) {
@@ -177,6 +210,12 @@ class DicesFragment : Fragment(R.layout.fragment_dices) {
         }
     }
 
+    /**
+     * Set the background of the dice view based on the provided number.
+     *
+     * @param num The number representing the dice value.
+     * @param item The ImageView representing the dice view.
+     */
     private fun setDiceBackground(num: Int, item: ImageView) {
         when (num) {
             1 -> item.setBackgroundResource(R.drawable.dice_1)
@@ -188,11 +227,19 @@ class DicesFragment : Fragment(R.layout.fragment_dices) {
         }
     }
 
+    /**
+     * Initialize AdMob by loading an ad into the banner view.
+     */
     private fun initAdmob() {
         val adRequest: AdRequest = AdRequest.Builder().build()
         binding.homeBanner.loadAd(adRequest)
     }
 
+    /**
+     * Initialize the RecyclerView adapter and set up the layout manager for the dice list.
+     *
+     * @param list The initial list of dice values to be displayed in the RecyclerView.
+     */
     private fun initAdapter(list: MutableList<Int>) {
         adapter = DicesAdapter(list)
         val layoutManager = LinearLayoutManager(context)
@@ -200,6 +247,9 @@ class DicesFragment : Fragment(R.layout.fragment_dices) {
         binding.list.adapter = adapter
     }
 
+    /**
+     * Clean up the ViewBinding instance to avoid memory leaks.
+     */
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null

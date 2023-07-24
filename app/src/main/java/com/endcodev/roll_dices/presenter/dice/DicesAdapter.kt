@@ -30,10 +30,19 @@ class DicesAdapter(private var list: MutableList<Int>) :
         }
     }
 
+    /**
+     * @return The total number of items in the list.
+     */
     override fun getItemCount(): Int {
         return list.size
     }
 
+
+    /**
+     * If the list size is greater than 10, remove the first item.
+     * Otherwise, notify the insertion at the last position.
+     * Notify that the data at each position has changed.
+     */
     fun swapData() {
         if (list.size > 10) {
             list.removeAt(0)

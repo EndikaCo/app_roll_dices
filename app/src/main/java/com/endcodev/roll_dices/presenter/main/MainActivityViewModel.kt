@@ -35,6 +35,9 @@ class MainActivityViewModel : ViewModel() {
         }
     }
 
+    /**
+     * Checks if the app is connected to Firebase
+     */
     fun isConnected() {
 
         val connectedRef = Firebase.database.getReference(".info/connected")
@@ -55,6 +58,9 @@ class MainActivityViewModel : ViewModel() {
         })
     }
 
+    /**
+     * Checks the version of the app in Firebase
+     */
     private fun checkVersion() {
 
         val database = FirebaseDatabase.getInstance()

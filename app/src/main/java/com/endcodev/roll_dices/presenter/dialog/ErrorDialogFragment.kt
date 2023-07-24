@@ -22,17 +22,10 @@ class ErrorDialogFragment(
             _binding = DialogFragmentErrorBinding.inflate(layoutInflater).apply {}
 
             onBackPress()
+
             initViews()
 
-            binding.errorAccept.setOnClickListener {
-                onAcceptClickLister.invoke(true)
-                dismiss()
-            }
-
-            binding.errorCancel.setOnClickListener {
-                activity?.finish()
-                exitProcess(0)
-            }
+            initListeners()
 
             AlertDialog.Builder(this).apply {
                 setView(binding.root)
@@ -40,6 +33,24 @@ class ErrorDialogFragment(
         } ?: throw IllegalStateException("Activity cannot be null")
     }
 
+    /**
+     * Init button listeners
+     */
+    private fun initListeners(){
+        binding.errorAccept.setOnClickListener {
+            onAcceptClickLister.invoke(true)
+            dismiss()
+        }
+
+        binding.errorCancel.setOnClickListener {
+            activity?.finish()
+            exitProcess(0)
+        }
+    }
+
+    /**
+     * Handle the onBackPressed event to do nothing when the back button is pressed
+     */
     private fun onBackPress() {
         object : OnBackPressedCallback(true) {
             override fun handleOnBackPressed() {
@@ -47,6 +58,10 @@ class ErrorDialogFragment(
         }
     }
 
+
+    /**
+     * Initialize the views in the dialog with the error details
+     */
     private fun initViews() {
         binding.errorTitle.text = error.title
         binding.errorDescription.text = error.description
