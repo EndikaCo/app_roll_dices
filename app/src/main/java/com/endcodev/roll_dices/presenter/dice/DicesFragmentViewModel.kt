@@ -70,7 +70,6 @@ class DicesFragmentViewModel : ViewModel() {
 
     /**
      * Adds a new dice with the given number to the dice list.
-     *
      * @param num The number to add as a new dice.
      */
     fun addDice(num: Int) {

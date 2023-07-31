@@ -27,10 +27,9 @@
         </activity>
 
         <!-- Sample AdMob app ID: ca-app-pub-3940256099942544~3347511713 -->
-        <!-- home admob banner -->
         <meta-data
             android:name="com.google.android.gms.ads.APPLICATION_ID"
-            android:value="ca-app-pub-3940256099942544~3347511713" /> <!-- todo: change with real id -->
+            android:value="ca-app-pub-6632128175277241~3510216930" />
     </application>
 
 </manifest>

@@ -93,7 +93,6 @@ class DicesFragment : Fragment(R.layout.fragment_dices) {
 
     /**
      * call ViewModel's rollDices method
-     *
      * set rolling to true to avoid actions while is rolling,
      */
     @SuppressLint("NotifyDataSetChanged")
@@ -121,7 +120,6 @@ class DicesFragment : Fragment(R.layout.fragment_dices) {
 
     /**
      * Add a dice with the given number to display the dice view.
-     *
      * @param num The number to add as a new dice.
      */
     private fun addDice(num: Int) {
