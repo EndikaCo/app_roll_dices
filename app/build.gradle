@@ -18,8 +18,8 @@ android {
         applicationId "com.endcodev.roll_dices"
         minSdk 24
         targetSdk 33
-        versionCode 2
-        versionName "2.0"
+        versionCode 3
+        versionName "3.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -68,7 +68,7 @@ dependencies {
     implementation 'com.google.firebase:firebase-database-ktx:20.2.2'
     //implementation 'com.google.firebase:firebase-analytics-ktx'
     //crashlytics
-    implementation 'com.google.firebase:firebase-crashlytics-ktx:18.3.7'
+    implementation 'com.google.firebase:firebase-crashlytics-ktx:18.4.0'
     implementation 'com.google.firebase:firebase-analytics-ktx:21.3.0'
     //view model
     implementation 'androidx.activity:activity-ktx:1.7.2'
@@ -81,7 +81,7 @@ dependencies {
     implementation "androidx.navigation:navigation-dynamic-features-fragment:$nav_version"
 
     //admob
-    implementation 'com.google.android.gms:play-services-ads:22.1.0'
+    implementation 'com.google.android.gms:play-services-ads:22.2.0'
 
     //splashscreen
     implementation "androidx.core:core-splashscreen:1.0.1"

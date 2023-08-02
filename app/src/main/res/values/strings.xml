@@ -6,4 +6,5 @@
     <string name="require_version">Your actual version is %1$s. But %2$d is required</string>
     <string name="cancel">Cancel</string>
     <string name="update">Update</string>
+    <string name="holder_selector">actual dice sum</string>
 </resources>
