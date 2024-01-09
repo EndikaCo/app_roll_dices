@@ -1,4 +1,4 @@
-package com.endcodev.roll_dices.presenter.dice
+package com.endcodev.roll_dices.presentation.dice
 
 import android.annotation.SuppressLint
 import android.content.res.Configuration
@@ -29,8 +29,6 @@ class DicesFragment : Fragment(R.layout.fragment_dices) {
     private val binding get() = _binding!!
     private val viewModel: DicesFragmentViewModel by viewModels()
     private lateinit var adapter: DicesAdapter
-
-
     private val dices: ArrayList<ImageView> = ArrayList()
     private var rolling = false
     private var sides = 6

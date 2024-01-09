@@ -1,4 +1,4 @@
-package com.endcodev.roll_dices.presenter.dice
+package com.endcodev.roll_dices.presentation.dice
 
 import android.view.LayoutInflater
 import android.view.View
@@ -36,7 +36,6 @@ class DicesAdapter(private var list: MutableList<Int>) :
     override fun getItemCount(): Int {
         return list.size
     }
-
 
     /**
      * If the list size is greater than 10, remove the first item.

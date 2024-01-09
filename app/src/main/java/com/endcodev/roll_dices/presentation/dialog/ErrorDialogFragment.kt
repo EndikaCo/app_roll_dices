@@ -1,11 +1,11 @@
-package com.endcodev.roll_dices.presenter.dialog
+package com.endcodev.roll_dices.presentation.dialog
 
 import android.app.AlertDialog
 import android.app.Dialog
 import android.os.Bundle
 import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.DialogFragment
-import com.endcodev.roll_dices.data.model.ErrorModel
+import com.endcodev.roll_dices.domain.models.ErrorModel
 import com.endcodev.roll_dices.databinding.DialogFragmentErrorBinding
 import kotlin.system.exitProcess
 

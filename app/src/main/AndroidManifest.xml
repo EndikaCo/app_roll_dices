@@ -15,7 +15,7 @@
         android:theme="@style/Theme.Roll_dices"
         tools:targetApi="31">
         <activity
-            android:name=".presenter.main.MainActivity"
+            android:name=".presentation.main.MainActivity"
             android:exported="true"
             android:theme="@style/Theme.App.Starting"
             android:windowSoftInputMode="adjustPan">

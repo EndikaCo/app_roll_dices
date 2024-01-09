@@ -1,10 +1,10 @@
-package com.endcodev.roll_dices.presenter.dice
+package com.endcodev.roll_dices.presentation.dice
 
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.endcodev.roll_dices.domain.GetRandomDiceUseCase
+import com.endcodev.roll_dices.domain.usecases.GetRandomDiceUseCase
 
 class DicesFragmentViewModel : ViewModel() {
 
@@ -37,7 +37,7 @@ class DicesFragmentViewModel : ViewModel() {
      * @param diceQuantity The number of dices to roll.
      */
     fun rollDices(sides: Int, diceQuantity: Int) {
-        _diceList.value = GetRandomDiceUseCase().invoke(sides, diceQuantity)
+        _diceList.value = GetRandomDiceUseCase().invoke(sides, diceQuantity).toMutableList()
         addToSumList()
     }
 

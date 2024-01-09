@@ -1,6 +1,6 @@
-package com.endcodev.roll_dices.presenter.main
+package com.endcodev.roll_dices.presentation.main
 
-import com.endcodev.roll_dices.presenter.dialog.ErrorDialogFragment
+import com.endcodev.roll_dices.presentation.dialog.ErrorDialogFragment
 import android.content.ActivityNotFoundException
 import android.content.Intent
 import android.content.pm.PackageInfo
@@ -17,7 +17,7 @@ import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import com.endcodev.roll_dices.R
-import com.endcodev.roll_dices.data.model.ErrorModel
+import com.endcodev.roll_dices.domain.models.ErrorModel
 import com.endcodev.roll_dices.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
@@ -92,9 +92,8 @@ class MainActivity : AppCompatActivity() {
     ): PackageInfo =
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
             getPackageInfo(packageName, PackageManager.PackageInfoFlags.of(flags.toLong()))
-        } else {
-            @Suppress("DEPRECATION") getPackageInfo(packageName, flags)
-        }
+        } else
+            getPackageInfo(packageName, flags)
 
     /**
      * Gets the current app version.

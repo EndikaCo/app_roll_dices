@@ -1,4 +1,4 @@
-package com.endcodev.roll_dices.presenter.main
+package com.endcodev.roll_dices.presentation.main
 
 import android.util.Log
 import androidx.lifecycle.LiveData
@@ -10,7 +10,6 @@ import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import com.google.firebase.database.ktx.database
-import com.google.firebase.database.ktx.getValue
 import com.google.firebase.ktx.Firebase
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -71,7 +70,7 @@ class MainActivityViewModel : ViewModel() {
             override fun onDataChange(snapshot: DataSnapshot) {
                 // This method is called once with the initial value and again
                 // whenever data at this location is updated.
-                val needVersion = snapshot.getValue<String>()
+                val needVersion = snapshot.getValue(String::class.java)
 
                 if (needVersion == null) {
                     Log.e(TAG, "versions is null")

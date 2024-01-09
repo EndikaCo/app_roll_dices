@@ -1,6 +1,6 @@
 package com.endcodev.roll_dices.dice
 
-import com.endcodev.roll_dices.domain.GetRandomDiceUseCase
+import com.endcodev.roll_dices.domain.usecases.GetRandomDiceUseCase
 import junit.framework.TestCase
 import org.junit.Test
 
@@ -35,3 +35,4 @@ internal class GetRandomDiceUseCaseTest {
             TestCase.assertTrue(rank[i] in min.toInt()..max.toInt())
     }
 }
+

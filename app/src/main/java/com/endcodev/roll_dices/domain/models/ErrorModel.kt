@@ -1,4 +1,4 @@
-package com.endcodev.roll_dices.data.model
+package com.endcodev.roll_dices.domain.models
 
 data class ErrorModel(
     val title: String,
