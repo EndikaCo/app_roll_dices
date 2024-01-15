@@ -30,9 +30,6 @@ class DicesAdapter(private var list: MutableList<Int>) :
         }
     }
 
-    /**
-     * @return The total number of items in the list.
-     */
     override fun getItemCount(): Int {
         return list.size
     }

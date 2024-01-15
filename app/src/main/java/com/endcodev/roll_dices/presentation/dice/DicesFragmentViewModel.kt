@@ -4,13 +4,10 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.endcodev.name_draw.domain.utils.App
 import com.endcodev.roll_dices.domain.usecases.GetRandomDiceUseCase
 
 class DicesFragmentViewModel : ViewModel() {
-
-    companion object {
-        const val TAG = "DicesFragmentViewModel ***"
-    }
 
     private val _diceList: MutableLiveData<MutableList<Int>> by lazy {
         MutableLiveData<MutableList<Int>>().apply {
@@ -54,7 +51,7 @@ class DicesFragmentViewModel : ViewModel() {
             sum += item
         sumList.add(sum)
 
-        Log.v(TAG, "sum list: ${_sumList.value}")
+        Log.v(App.tag, "sum list: ${_sumList.value}")
     }
 
     /**

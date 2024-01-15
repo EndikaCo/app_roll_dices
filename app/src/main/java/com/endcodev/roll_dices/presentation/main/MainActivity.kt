@@ -16,15 +16,12 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
+import com.endcodev.name_draw.domain.utils.App
 import com.endcodev.roll_dices.R
 import com.endcodev.roll_dices.domain.models.ErrorModel
 import com.endcodev.roll_dices.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
-
-    companion object {
-        const val TAG = "MainActivity ***"
-    }
 
     private var _binding: ActivityMainBinding? = null
     private val binding get() = _binding!!
@@ -56,7 +53,7 @@ class MainActivity : AppCompatActivity() {
             if (it != null)
                 versionControl(it)
             else
-                Log.e(TAG, "App version is null")
+                Log.e(App.tag, "App version is null")
         }    }
 
 
@@ -83,9 +80,7 @@ class MainActivity : AppCompatActivity() {
         )
     }
 
-    /**
-     * Gets package info
-     */
+    /** Gets package info*/
     private fun PackageManager.getPackageInfoCompat(
         packageName: String,
         flags: Int = 0
@@ -134,9 +129,7 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    /**
-     * Opens the Play Store to update the app.
-     */
+    /** Opens the Play Store to update the app.*/
     private fun openPlayStore() {
         val appPackageName = packageName
         try {

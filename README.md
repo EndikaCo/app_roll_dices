@@ -3,7 +3,7 @@ Roll Dices
 
 [![Google Play](https://img.shields.io/badge/Google_Play-grey?style=none&logo=google-play&logoColor=cyan)](https://play.google.com/store/apps/details?id=com.endcodev.roll_dices)
 [![License](https://img.shields.io/badge/License-MIT-blue.svg)](https://github.com/EndikaCo/app_roll_dices/LICENSE)
-![Github Actions](https://github.com/EndikaCo/name_draw/actions/workflows/testing.yml/badge.svg)
+[![Github Actions](https://github.com/EndikaCo/app_roll_dices/actions/workflows/testing.yml/badge.svg)]()
 
 Simple Android App that can be used in case you have lost your dices.  
 With MVVM architecture & clean code.

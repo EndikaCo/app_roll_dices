@@ -15,15 +15,12 @@ import android.widget.LinearLayout
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.endcodev.name_draw.domain.utils.App
 import com.endcodev.roll_dices.R
 import com.endcodev.roll_dices.databinding.FragmentDicesBinding
 import com.google.android.gms.ads.AdRequest
 
 class DicesFragment : Fragment(R.layout.fragment_dices) {
-
-    companion object {
-        const val TAG = "DicesFragment ***"
-    }
 
     private var _binding: FragmentDicesBinding? = null
     private val binding get() = _binding!!
@@ -52,8 +49,6 @@ class DicesFragment : Fragment(R.layout.fragment_dices) {
         initAdmob()
 
         initListeners()
-
-        initObservers()
     }
 
     /**
@@ -68,12 +63,6 @@ class DicesFragment : Fragment(R.layout.fragment_dices) {
             }
         }
     }
-
-    /**
-     * Empty function (placeholders for future implementations if required).
-     */
-    private fun initObservers() {}
-
 
     private fun initListeners() {
         binding.linearDices.setOnClickListener {
@@ -168,7 +157,6 @@ class DicesFragment : Fragment(R.layout.fragment_dices) {
 
     /**
      * Roll the dice views with animations based on the dice values from the ViewModel's diceList.
-     *
      * @param ivs The list of dice views to roll.
      */
     private fun rollDices(ivs: ArrayList<ImageView>) {
@@ -176,7 +164,7 @@ class DicesFragment : Fragment(R.layout.fragment_dices) {
         for ((index, item) in ivs.withIndex()) {
 
             val dice = viewModel.diceList.value!![index]
-            Log.v(TAG, "index:$index dice:${dice} \n")
+            Log.v(App.tag, "index:$index dice:${dice} \n")
             if (dice == 1 || dice == 3 || dice == 6) {
 
                 item.setBackgroundResource(R.drawable.dice_spread)
@@ -194,7 +182,7 @@ class DicesFragment : Fragment(R.layout.fragment_dices) {
                             adapter.swapData()
 
                         } catch (e: Exception) {
-                            Log.e(TAG, "Exception: $e")
+                            Log.e(App.tag, "Exception: $e")
                         }
                         if (index == ivs.lastIndex)
                             rolling = false

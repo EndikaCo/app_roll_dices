@@ -5,6 +5,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.endcodev.name_draw.domain.utils.App
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
@@ -16,10 +17,6 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
 class MainActivityViewModel : ViewModel() {
-
-    companion object {
-        const val TAG = "MainActivityViewModel ***"
-    }
 
     var isReady: Boolean = false
     private val _version = MutableLiveData<String?>()
@@ -44,15 +41,15 @@ class MainActivityViewModel : ViewModel() {
             override fun onDataChange(snapshot: DataSnapshot) {
                 val connected = snapshot.getValue(Boolean::class.java) ?: false
                 if (connected) {
-                    Log.d(TAG, "firebase connected")
+                    Log.d(App.tag, "firebase connected")
                     checkVersion()
                 } else {
-                    Log.d(TAG, "firebase not connected")
+                    Log.d(App.tag, "firebase not connected")
                 }
             }
 
             override fun onCancelled(error: DatabaseError) {
-                Log.w(TAG, "firebase listener was cancelled")
+                Log.w(App.tag, "firebase listener was cancelled")
             }
         })
     }
@@ -73,14 +70,14 @@ class MainActivityViewModel : ViewModel() {
                 val needVersion = snapshot.getValue(String::class.java)
 
                 if (needVersion == null) {
-                    Log.e(TAG, "versions is null")
+                    Log.e(App.tag, "versions is null")
                 } else {
                     _version.value = needVersion
                 }
             }
 
             override fun onCancelled(error: DatabaseError) {
-                Log.e(TAG, "Firebase error: $error")
+                Log.e(App.tag, "Firebase error: $error")
             }
         })
     }

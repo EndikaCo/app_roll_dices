@@ -58,7 +58,6 @@ class ErrorDialogFragment(
         }
     }
 
-
     /**
      * Initialize the views in the dialog with the error details
      */
