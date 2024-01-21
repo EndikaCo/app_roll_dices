@@ -1,4 +1,4 @@
-package com.endcodev.name_draw.domain.utils
+package com.endcodev.roll_dices.domain.utils
 
 object App {
     val tag: String

@@ -17,12 +17,11 @@ internal class GetRandomDiceUseCaseTest {
 
         // Perform the tests
         for (i in 1..testQuantity) {
-            // Generate 5 dice rolls with 7 faces each
+            // Generate 5 dice rolls with 6 faces each
             val a = GetRandomDiceUseCase().invoke(faces, 5)
             for (item in a)
                 randNumList.add(item)
         }
-
         // Create a list to keep track of the frequency of each roll result
         val rank = MutableList(faces) { 0 }
 

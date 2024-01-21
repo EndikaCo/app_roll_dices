@@ -15,9 +15,11 @@ import android.widget.LinearLayout
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.endcodev.name_draw.domain.utils.App
+import com.endcodev.roll_dices.domain.utils.App
 import com.endcodev.roll_dices.R
 import com.endcodev.roll_dices.databinding.FragmentDicesBinding
+import com.endcodev.roll_dices.presentation.utils.StoreUtils.getVersion
+import com.endcodev.roll_dices.presentation.utils.StoreUtils.openPlayStore
 import com.google.android.gms.ads.AdRequest
 
 class DicesFragment : Fragment(R.layout.fragment_dices) {
@@ -51,10 +53,10 @@ class DicesFragment : Fragment(R.layout.fragment_dices) {
         initListeners()
     }
 
-    /**
-     * Initialize views by setting up the diceList, adding dice views
-     */
+    /** Initialize views by setting up the diceList, adding dice views*/
     private fun initViews() {
+        val version = getVersion(requireContext())
+        "V$version".also { binding.textView2?.text = it }
 
         val diceList = viewModel.diceList.value
         if (diceList != null) {
@@ -75,6 +77,29 @@ class DicesFragment : Fragment(R.layout.fragment_dices) {
 
         binding.viewButtons.removeBt.setOnClickListener {
             removeLastDice()
+        }
+
+        binding.rateButton.setOnClickListener {
+            openPlayStore(requireContext(), requireActivity().packageName)
+        }
+
+        var color = 0
+        binding.colorButton.setOnClickListener {
+            changeBackgroundColor(color)
+
+            color++
+            if (color > 3)
+                color = 0
+        }
+    }
+
+    private fun changeBackgroundColor(color: Int) {
+        val theme = requireContext().theme
+        when (color){
+            0 -> binding.dicesBackground.setBackgroundColor(resources.getColor(R.color.backGrey, theme))
+            1 -> binding.dicesBackground.setBackgroundColor(resources.getColor(R.color.backRed, theme))
+            2 -> binding.dicesBackground.setBackgroundColor(resources.getColor(R.color.black, theme))
+            else -> binding.dicesBackground.setBackgroundColor(resources.getColor(R.color.backGreen, theme))
         }
     }
 
@@ -168,7 +193,7 @@ class DicesFragment : Fragment(R.layout.fragment_dices) {
             if (dice == 1 || dice == 3 || dice == 6) {
 
                 item.setBackgroundResource(R.drawable.dice_spread)
-            }else
+            } else
                 item.setBackgroundResource(R.drawable.dice_spread_2)
 
             val diceAnimation = item.background
@@ -221,7 +246,6 @@ class DicesFragment : Fragment(R.layout.fragment_dices) {
 
     /**
      * Initialize the RecyclerView adapter and set up the layout manager for the dice list.
-     *
      * @param list The initial list of dice values to be displayed in the RecyclerView.
      */
     private fun initAdapter(list: MutableList<Int>) {

@@ -4,7 +4,7 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.endcodev.name_draw.domain.utils.App
+import com.endcodev.roll_dices.domain.utils.App
 import com.endcodev.roll_dices.domain.usecases.GetRandomDiceUseCase
 
 class DicesFragmentViewModel : ViewModel() {
@@ -19,9 +19,7 @@ class DicesFragmentViewModel : ViewModel() {
     private var _sumList = MutableLiveData<MutableList<Int>>()
     val sumList: LiveData<MutableList<Int>> get() = _sumList
 
-    /**
-     * Initializes the ViewModel with an empty list for storing dice sums.
-     */
+    /** Initializes the ViewModel with an empty list for storing dice sums.*/
     init {
         _sumList.value = mutableListOf()
     }

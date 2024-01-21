@@ -18,16 +18,17 @@ android {
         applicationId "com.endcodev.roll_dices"
         minSdk 24
         targetSdk 34
-        versionCode 3
-        versionName "3.0"
+        versionCode 4
+        versionName "4.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
     buildTypes {
         release {
-            minifyEnabled false
+            minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.debug
         }
     }
     compileOptions {
@@ -59,7 +60,7 @@ dependencies {
     testImplementation 'junit:junit:4.13.2'
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.9.3'
     testImplementation "androidx.arch.core:core-testing:2.2.0"
-
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.9.3'
     //firebase
     // Import the BoM for the Firebase platform
     implementation platform('com.google.firebase:firebase-bom:32.0.0')

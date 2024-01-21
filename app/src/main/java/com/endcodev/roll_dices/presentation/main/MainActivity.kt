@@ -1,12 +1,6 @@
 package com.endcodev.roll_dices.presentation.main
 
 import com.endcodev.roll_dices.presentation.dialog.ErrorDialogFragment
-import android.content.ActivityNotFoundException
-import android.content.Intent
-import android.content.pm.PackageInfo
-import android.content.pm.PackageManager
-import android.net.Uri
-import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.view.View
@@ -16,10 +10,12 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
-import com.endcodev.name_draw.domain.utils.App
+import com.endcodev.roll_dices.domain.utils.App
 import com.endcodev.roll_dices.R
 import com.endcodev.roll_dices.domain.models.ErrorModel
 import com.endcodev.roll_dices.databinding.ActivityMainBinding
+import com.endcodev.roll_dices.presentation.utils.StoreUtils.getVersion
+import com.endcodev.roll_dices.presentation.utils.StoreUtils.openPlayStore
 
 class MainActivity : AppCompatActivity() {
 
@@ -45,67 +41,30 @@ class MainActivity : AppCompatActivity() {
         appReady()
     }
 
-    /**
-     * Initializes observers for LiveData objects in the ViewModel.
-     */
+    /** Initializes observers for LiveData objects in the ViewModel.*/
     private fun initObservers() {
         mainViewModel.version.observe(this) {
             if (it != null)
                 versionControl(it)
             else
                 Log.e(App.tag, "App version is null")
-        }    }
+        }
+    }
 
-
-    /**
-     * Sets up an OnPreDrawListener to check whether the initial data is ready before drawing the UI.
-     */
-    private fun appReady(){
-        // Set up an OnPreDrawListener to the root view.
+    /** Sets up an OnPreDrawListener to check whether the initial data is ready before drawing the UI.*/
+    private fun appReady() {
         val content: View = findViewById(android.R.id.content)
         content.viewTreeObserver.addOnPreDrawListener(
             object : ViewTreeObserver.OnPreDrawListener {
                 override fun onPreDraw(): Boolean {
-                    // Check whether the initial data is ready.
                     return if (mainViewModel.isReady) {
-                        // The content is ready. Start drawing.
                         content.viewTreeObserver.removeOnPreDrawListener(this)
                         true
-                    } else {
-                        // The content isn't ready. Suspend.
+                    } else
                         false
-                    }
                 }
             }
         )
-    }
-
-    /** Gets package info*/
-    private fun PackageManager.getPackageInfoCompat(
-        packageName: String,
-        flags: Int = 0
-    ): PackageInfo =
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-            getPackageInfo(packageName, PackageManager.PackageInfoFlags.of(flags.toLong()))
-        } else
-            getPackageInfo(packageName, flags)
-
-    /**
-     * Gets the current app version.
-     * @return The current app version as an Int.
-     */
-    private fun getVersion(): Int {
-
-        val appVersion: Int
-        val pInfo = this.packageManager.getPackageInfoCompat(packageName, 0)
-
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-            appVersion = pInfo.longVersionCode.toInt()
-        } else {
-            @Suppress("DEPRECATION")
-            appVersion = pInfo.versionCode
-        }
-        return appVersion
     }
 
     /**
@@ -117,35 +76,23 @@ class MainActivity : AppCompatActivity() {
         val error =
             ErrorModel(
                 getString(R.string.require_update),
-                getString(R.string.require_version, getVersion().toString(), needVersion.toInt()),
+                getString(
+                    R.string.require_version,
+                    getVersion(this).toString(),
+                    needVersion.toInt()
+                ),
                 getString(R.string.update),
                 getString(R.string.cancel)
             )
 
-        if (needVersion.toInt() != getVersion()) {
-            val dialog = ErrorDialogFragment(onAcceptClickLister = { openPlayStore() }, error)
+        if (needVersion.toInt() > getVersion(this)) {
+            val appPackageName = packageName
+            val dialog = ErrorDialogFragment(
+                onAcceptClickLister = { openPlayStore(this, appPackageName) },
+                error
+            )
             dialog.isCancelable = false
             dialog.show(supportFragmentManager, "dialog")
-        }
-    }
-
-    /** Opens the Play Store to update the app.*/
-    private fun openPlayStore() {
-        val appPackageName = packageName
-        try {
-            startActivity(
-                Intent(
-                    Intent.ACTION_VIEW,
-                    Uri.parse("market://details?id=$appPackageName")
-                )
-            )
-        } catch (e: ActivityNotFoundException) {
-            startActivity(
-                Intent(
-                    Intent.ACTION_VIEW,
-                    Uri.parse("https://play.google.com/store/apps/details?id=$appPackageName")
-                )
-            )
         }
     }
 
