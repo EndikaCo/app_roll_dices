@@ -19,5 +19,5 @@ Firebase used for version control.
 [![MVVM](https://img.shields.io/badge/MVVM-orange?style=&logo=)]()
 [![Live Data](https://img.shields.io/badge/Live_Data-grey?style=&logo=)]()
 
-| ![img.png](images/1.png) | ![img.png](images/2.png) |
-|--------------------------|--------------------------|
+| ![img.png](images/1.png) | ![img.png](images/2.png) | ![img.png](images/3.png) |
+|--------------------------|--------------------------|--------------------------|

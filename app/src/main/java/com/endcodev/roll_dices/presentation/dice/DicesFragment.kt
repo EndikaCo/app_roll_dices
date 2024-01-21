@@ -95,11 +95,34 @@ class DicesFragment : Fragment(R.layout.fragment_dices) {
 
     private fun changeBackgroundColor(color: Int) {
         val theme = requireContext().theme
-        when (color){
-            0 -> binding.dicesBackground.setBackgroundColor(resources.getColor(R.color.backGrey, theme))
-            1 -> binding.dicesBackground.setBackgroundColor(resources.getColor(R.color.backRed, theme))
-            2 -> binding.dicesBackground.setBackgroundColor(resources.getColor(R.color.black, theme))
-            else -> binding.dicesBackground.setBackgroundColor(resources.getColor(R.color.backGreen, theme))
+        when (color) {
+            0 -> binding.dicesBackground.setBackgroundColor(
+                resources.getColor(
+                    R.color.backGrey,
+                    theme
+                )
+            )
+
+            1 -> binding.dicesBackground.setBackgroundColor(
+                resources.getColor(
+                    R.color.backRed,
+                    theme
+                )
+            )
+
+            2 -> binding.dicesBackground.setBackgroundColor(
+                resources.getColor(
+                    R.color.black,
+                    theme
+                )
+            )
+
+            else -> binding.dicesBackground.setBackgroundColor(
+                resources.getColor(
+                    R.color.backGreen,
+                    theme
+                )
+            )
         }
     }
 

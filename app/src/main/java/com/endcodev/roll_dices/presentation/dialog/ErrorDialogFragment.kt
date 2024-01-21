@@ -36,7 +36,7 @@ class ErrorDialogFragment(
     /**
      * Init button listeners
      */
-    private fun initListeners(){
+    private fun initListeners() {
         binding.errorAccept.setOnClickListener {
             onAcceptClickLister.invoke(true)
             dismiss()

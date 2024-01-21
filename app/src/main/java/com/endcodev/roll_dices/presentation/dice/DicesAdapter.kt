@@ -43,8 +43,7 @@ class DicesAdapter(private var list: MutableList<Int>) :
         if (list.size > 10) {
             list.removeAt(0)
             notifyItemRemoved(0)
-        }
-        else
+        } else
             notifyItemInserted(list.size)
         for ((index) in list.withIndex()) {
             notifyItemChanged(index)

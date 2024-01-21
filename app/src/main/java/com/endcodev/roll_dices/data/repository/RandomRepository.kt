@@ -8,7 +8,6 @@ class RandomRepository {
 
     /**
      * Generate a random list of dice rolls.
-     *
      * @param faces The number of sides on each dice.
      * @param diceQuantity The number of dice rolls to generate.
      * @return A list of random integers representing dice rolls.
