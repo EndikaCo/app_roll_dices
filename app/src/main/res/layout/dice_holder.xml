@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:gravity="center_vertical"
     android:orientation="horizontal"
-    android:paddingBottom="10dp">
+    android:paddingBottom="10dp"
+    tools:ignore="UseCompoundDrawables">
 
     <TextView
         android:id="@+id/holder_rand_name"
@@ -13,9 +15,9 @@
         android:background="@drawable/stroke"
         android:fontFamily="casual"
         android:gravity="center"
-        android:text=""
-        android:minHeight="40dp"
         android:minWidth="40dp"
+        android:minHeight="40dp"
+        android:text=""
         android:textAlignment="center"
         android:textColor="@color/white"
         android:textSize="16sp" />
@@ -24,10 +26,10 @@
         android:id="@+id/holder_arrow"
         android:layout_width="15dp"
         android:layout_height="15dp"
+        android:contentDescription="@string/holder_selector"
         android:gravity="center"
         android:src="@drawable/arrow_left_24"
         android:textAlignment="center"
-        android:visibility="invisible"
-        android:contentDescription="@string/holder_selector" />
+        android:visibility="invisible" />
 
 </LinearLayout>

@@ -7,4 +7,7 @@
     <string name="cancel">Cancel</string>
     <string name="update">Update</string>
     <string name="holder_selector">actual dice sum</string>
+    <string name="rate_app_button">Rate app</string>
+    <string name="change_background_color">Change background color</string>
+    <string name="v1">V1</string>
 </resources>

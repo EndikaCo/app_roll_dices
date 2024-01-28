@@ -6,4 +6,8 @@
     <string name="update">Actualizar</string>
     <string name="cancel">Cancelar</string>
     <string name="require_version">Tu versión actual es V%1$s.0\nSe requiere V%2$d.0</string>
+    <string name="holder_selector">Suma actual de los dados</string>
+    <string name="rate_app_button">Votar reseña de App</string>
+    <string name="change_background_color">Cambiar color de fondo</string>
+    <string name="v1">V1</string>
 </resources>

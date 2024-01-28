@@ -1,12 +1,12 @@
-package com.endcodev.roll_dices.presenter.dialog
+package com.endcodev.roll_dices.presentation.dialog
 
 import android.app.AlertDialog
 import android.app.Dialog
 import android.os.Bundle
 import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.DialogFragment
-import com.endcodev.roll_dices.data.model.ErrorModel
 import com.endcodev.roll_dices.databinding.DialogFragmentErrorBinding
+import com.endcodev.roll_dices.domain.models.ErrorModel
 import kotlin.system.exitProcess
 
 class ErrorDialogFragment(
@@ -36,7 +36,7 @@ class ErrorDialogFragment(
     /**
      * Init button listeners
      */
-    private fun initListeners(){
+    private fun initListeners() {
         binding.errorAccept.setOnClickListener {
             onAcceptClickLister.invoke(true)
             dismiss()
@@ -57,7 +57,6 @@ class ErrorDialogFragment(
             }
         }
     }
-
 
     /**
      * Initialize the views in the dialog with the error details

@@ -1,16 +1,13 @@
-package com.endcodev.roll_dices.presenter.dice
+package com.endcodev.roll_dices.presentation.dice
 
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.endcodev.roll_dices.domain.GetRandomDiceUseCase
+import com.endcodev.roll_dices.domain.usecases.GetRandomDiceUseCase
+import com.endcodev.roll_dices.domain.utils.App
 
 class DicesFragmentViewModel : ViewModel() {
-
-    companion object {
-        const val TAG = "DicesFragmentViewModel ***"
-    }
 
     private val _diceList: MutableLiveData<MutableList<Int>> by lazy {
         MutableLiveData<MutableList<Int>>().apply {
@@ -22,9 +19,7 @@ class DicesFragmentViewModel : ViewModel() {
     private var _sumList = MutableLiveData<MutableList<Int>>()
     val sumList: LiveData<MutableList<Int>> get() = _sumList
 
-    /**
-     * Initializes the ViewModel with an empty list for storing dice sums.
-     */
+    /** Initializes the ViewModel with an empty list for storing dice sums.*/
     init {
         _sumList.value = mutableListOf()
     }
@@ -37,7 +32,7 @@ class DicesFragmentViewModel : ViewModel() {
      * @param diceQuantity The number of dices to roll.
      */
     fun rollDices(sides: Int, diceQuantity: Int) {
-        _diceList.value = GetRandomDiceUseCase().invoke(sides, diceQuantity)
+        _diceList.value = GetRandomDiceUseCase().invoke(sides, diceQuantity).toMutableList()
         addToSumList()
     }
 
@@ -54,7 +49,7 @@ class DicesFragmentViewModel : ViewModel() {
             sum += item
         sumList.add(sum)
 
-        Log.v(TAG, "sum list: ${_sumList.value}")
+        Log.v(App.tag, "sum list: ${_sumList.value}")
     }
 
     /**

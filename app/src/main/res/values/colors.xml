@@ -7,4 +7,7 @@
     <color name="black">#FF000000</color>
     <color name="white">#F9F4E4</color>
     <color name="transparent">#00000000</color>
+    <color name="backRed">#872D2D</color>
+    <color name="backGrey">#FF424242</color>
+    <color name="backGreen">#3A6C28</color>
 </resources>
