@@ -5,8 +5,8 @@ import android.app.Dialog
 import android.os.Bundle
 import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.DialogFragment
-import com.endcodev.roll_dices.domain.models.ErrorModel
 import com.endcodev.roll_dices.databinding.DialogFragmentErrorBinding
+import com.endcodev.roll_dices.domain.models.ErrorModel
 import kotlin.system.exitProcess
 
 class ErrorDialogFragment(

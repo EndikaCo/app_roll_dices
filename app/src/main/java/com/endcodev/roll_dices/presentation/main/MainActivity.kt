@@ -1,6 +1,5 @@
 package com.endcodev.roll_dices.presentation.main
 
-import com.endcodev.roll_dices.presentation.dialog.ErrorDialogFragment
 import android.os.Bundle
 import android.util.Log
 import android.view.View
@@ -10,10 +9,11 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
-import com.endcodev.roll_dices.domain.utils.App
 import com.endcodev.roll_dices.R
-import com.endcodev.roll_dices.domain.models.ErrorModel
 import com.endcodev.roll_dices.databinding.ActivityMainBinding
+import com.endcodev.roll_dices.domain.models.ErrorModel
+import com.endcodev.roll_dices.domain.utils.App
+import com.endcodev.roll_dices.presentation.dialog.ErrorDialogFragment
 import com.endcodev.roll_dices.presentation.utils.StoreUtils.getVersion
 import com.endcodev.roll_dices.presentation.utils.StoreUtils.openPlayStore
 

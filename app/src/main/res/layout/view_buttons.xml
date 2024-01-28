@@ -8,22 +8,22 @@
 
     <Button
         android:id="@+id/remove_bt"
+        style="@style/view_buttons"
         android:layout_width="60dp"
         android:layout_height="60dp"
         android:text="@string/minus"
-        style="@style/view_buttons"
         app:layout_constraintEnd_toEndOf="@+id/add_bt"
         app:layout_constraintStart_toStartOf="@+id/add_bt"
         app:layout_constraintTop_toBottomOf="@+id/add_bt" />
 
     <Button
         android:id="@+id/add_bt"
+        style="@style/view_buttons"
         android:layout_width="60dp"
         android:layout_height="60dp"
         android:layout_marginTop="24dp"
         android:layout_marginEnd="16dp"
         android:text="@string/plus"
-        style="@style/view_buttons"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 

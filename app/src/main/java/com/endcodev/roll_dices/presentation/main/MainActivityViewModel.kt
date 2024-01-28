@@ -61,12 +61,9 @@ class MainActivityViewModel : ViewModel() {
 
         val database = FirebaseDatabase.getInstance()
         val myRef = database.getReference("/version")
-        // Read from the database
         myRef.addValueEventListener(object : ValueEventListener {
 
             override fun onDataChange(snapshot: DataSnapshot) {
-                // This method is called once with the initial value and again
-                // whenever data at this location is updated.
                 val needVersion = snapshot.getValue(String::class.java)
 
                 if (needVersion == null) {

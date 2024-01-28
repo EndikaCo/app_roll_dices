@@ -4,8 +4,8 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.endcodev.roll_dices.domain.utils.App
 import com.endcodev.roll_dices.domain.usecases.GetRandomDiceUseCase
+import com.endcodev.roll_dices.domain.utils.App
 
 class DicesFragmentViewModel : ViewModel() {
 

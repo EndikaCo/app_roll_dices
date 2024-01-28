@@ -15,9 +15,9 @@ import android.widget.LinearLayout
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.endcodev.roll_dices.domain.utils.App
 import com.endcodev.roll_dices.R
 import com.endcodev.roll_dices.databinding.FragmentDicesBinding
+import com.endcodev.roll_dices.domain.utils.App
 import com.endcodev.roll_dices.presentation.utils.StoreUtils.getVersion
 import com.endcodev.roll_dices.presentation.utils.StoreUtils.openPlayStore
 import com.google.android.gms.ads.AdRequest
@@ -214,7 +214,6 @@ class DicesFragment : Fragment(R.layout.fragment_dices) {
             val dice = viewModel.diceList.value!![index]
             Log.v(App.tag, "index:$index dice:${dice} \n")
             if (dice == 1 || dice == 3 || dice == 6) {
-
                 item.setBackgroundResource(R.drawable.dice_spread)
             } else
                 item.setBackgroundResource(R.drawable.dice_spread_2)
